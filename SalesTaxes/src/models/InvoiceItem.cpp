@@ -28,6 +28,9 @@ unsigned long int InvoiceItem::get_quantity() const
 
 void InvoiceItem::set_quantity(unsigned int quantity) 
 {
+	if (quantity < 1)
+		throw InvoiceItemException("Invoice item should have a quantity >= 1");
+
 	this->quantity = quantity;
 
 	total_price = product->get_price() * quantity;
